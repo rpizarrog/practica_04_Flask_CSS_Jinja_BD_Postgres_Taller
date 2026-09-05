@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cotización de Servicio</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+
+</head>
+
+<body>
+
+
+    <!-- =====================================================
+         ENCABEZADO
+         ===================================================== -->
+
+    <header class="encabezado">
+
+        <h1>Taller Mecánico</h1>
+
+        <p>
+            Cotización preliminar de servicio
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="contenedor">
+
+
+        <h2>
+            Cotización preliminar
+        </h2>
+
+
+
+        <!-- =================================================
+             DATOS DE LA SOLICITUD
+             ================================================= -->
+
+        <section class="datos">
+
+            <h3>Datos de la solicitud</h3>
+
+
+            <p>
+                <strong>Número de solicitud:</strong>
+                {{ solicitud[0] }}
+            </p>
+
+
+            <p>
+                <strong>Fecha de solicitud:</strong>
+
+                {% if solicitud[1] %}
+
+                    {{ solicitud[1].strftime('%d/%m/%Y') }}
+
+                {% endif %}
+            </p>
+
+
+            <p>
+                <strong>Estado:</strong>
+                {{ solicitud[16] }}
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DATOS DEL CLIENTE
+             ================================================= -->
+
+        <section class="datos">
+
+            <h3>Datos del cliente</h3>
+
+
+            <p>
+
+                <strong>Nombre:</strong>
+
+                {{ solicitud[2] }}
+                {{ solicitud[3] }}
+
+                {% if solicitud[4] %}
+
+                    {{ solicitud[4] }}
+
+                {% endif %}
+
+            </p>
+
+
+            <p>
+                <strong>Correo electrónico:</strong>
+                {{ solicitud[5] }}
+            </p>
+
+
+            <p>
+                <strong>Teléfono:</strong>
+                {{ solicitud[6] }}
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             DATOS DEL VEHÍCULO
+             ================================================= -->
+
+        <section class="datos">
+
+            <h3>Datos del vehículo</h3>
+
+
+            <p>
+                <strong>Marca:</strong>
+                {{ solicitud[7] }}
+            </p>
+
+
+            <p>
+                <strong>Modelo:</strong>
+                {{ solicitud[8] }}
+            </p>
+
+
+            <p>
+                <strong>Año:</strong>
+                {{ solicitud[9] }}
+            </p>
+
+
+            <p>
+                <strong>Kilometraje:</strong>
+                {{ solicitud[10] }} km
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SERVICIO SOLICITADO
+             ================================================= -->
+
+        <section class="datos">
+
+            <h3>Servicio solicitado</h3>
+
+
+            <p>
+                <strong>Servicio:</strong>
+                {{ solicitud[12] }}
+            </p>
+
+
+            <p>
+                <strong>Descripción del servicio:</strong>
+                {{ solicitud[13] }}
+            </p>
+
+
+            <p>
+                <strong>Problema reportado:</strong>
+                {{ solicitud[15] }}
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             IMPORTE DE LA COTIZACIÓN
+             ================================================= -->
+
+        <section class="datos">
+
+            <h3>Importe de la cotización</h3>
+
+
+            <p>
+                <strong>Servicio / diagnóstico base:</strong>
+
+                ${{ "%.2f"|format(subtotal) }}
+            </p>
+
+
+            <p>
+                <strong>Subtotal:</strong>
+
+                ${{ "%.2f"|format(subtotal) }}
+            </p>
+
+
+            <p>
+                <strong>IVA (16%):</strong>
+
+                ${{ "%.2f"|format(iva) }}
+            </p>
+
+
+            <hr>
+
+
+            <p class="total-cotizacion">
+
+                <strong>TOTAL ESTIMADO:</strong>
+
+                ${{ "%.2f"|format(total) }}
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AVISO IMPORTANTE
+             ================================================= -->
+
+        <section class="aviso-cotizacion">
+
+            <h3>
+                Importante
+            </h3>
+
+
+            <p>
+                La presente cotización es de carácter
+                <strong>preliminar</strong> y corresponde
+                al servicio inicialmente solicitado.
+            </p>
+
+
+            <p>
+                El precio final puede variar debido a
+                <strong>
+                    gastos derivados del diagnóstico especializado
+                </strong>,
+                entre los que pueden incluirse:
+            </p>
+
+
+            <ul>
+
+                <li>
+                    Refacciones o componentes que requieran
+                    sustitución.
+                </li>
+
+                <li>
+                    Mano de obra adicional.
+                </li>
+
+                <li>
+                    Pruebas y diagnósticos especializados.
+                </li>
+
+                <li>
+                    Uso de equipo especializado de diagnóstico.
+                </li>
+
+                <li>
+                    Líquidos, lubricantes y materiales adicionales.
+                </li>
+
+                <li>
+                    Reparaciones adicionales detectadas durante
+                    la revisión del vehículo.
+                </li>
+
+                <li>
+                    Servicios externos especializados que pudieran
+                    ser necesarios.
+                </li>
+
+            </ul>
+
+
+            <p>
+
+                <strong>
+                    Cualquier trabajo o gasto adicional será
+                    informado al cliente y deberá ser autorizado
+                    antes de realizarse.
+                </strong>
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BOTONES
+             ================================================= -->
+
+        <div class="area-boton">
+
+            <a href="{{ url_for('generar_pdf_cotizacion',
+                                id_solicitud=solicitud[0]) }}"
+            class="boton">
+                Generar PDF
+            </a>
+
+
+            <!-- ENVIAR POR CORREO -->  
+            <form
+                action="{{ url_for('enviar_cotizacion_correo',
+                                    id_solicitud=solicitud[0]) }}"
+                method="POST"
+                style="display: inline;">
+
+                <button type="submit" class="boton">
+                    Enviar cotización por correo
+                </button>
+
+            </form>
+
+
+            <a href="{{ url_for('listar_solicitudes') }}"
+               class="boton">
+
+                Regresar a solicitudes
+
+            </a>
+
+
+            <a href="{{ url_for('inicio') }}"
+               class="boton">
+
+                Nueva solicitud
+
+            </a>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ===================================================== -->
+
+    <footer class="pie">
+
+        Taller Mecánico |
+        Sistema Web de Solicitudes de Servicio
+
+    </footer>
+
+    <script>
+
+        const parametros = new URLSearchParams(
+            window.location.search
+        );
+
+        if (parametros.get("correo_enviado") === "si") {
+
+            alert(
+                "Cotización enviada correctamente por correo."
+            );
+
+        }
+
+    </script>
+</body>
+
+</html>

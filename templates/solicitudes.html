@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Solicitudes Registradas</title>
+
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/estilos.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         ENCABEZADO
+         ===================================================== -->
+
+    <header class="encabezado">
+
+        <h1>Taller Mecánico</h1>
+
+        <p>
+            Administración de solicitudes de servicio
+        </p>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="contenedor solicitudes-contenedor">
+
+
+        <!-- =================================================
+             TÍTULO Y CONTADOR
+             ================================================= -->
+
+        <div class="titulo-solicitudes">
+
+            <div>
+
+                <h2>Solicitudes registradas</h2>
+
+                <p class="subtitulo">
+                    Consulta y administración de solicitudes
+                    recibidas en el taller
+                </p>
+
+            </div>
+
+
+            <div class="contador">
+
+                {{ solicitudes|length }} solicitudes
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             VERIFICAR SI EXISTEN SOLICITUDES
+             ================================================= -->
+
+        {% if solicitudes %}
+
+
+        <div class="tabla-responsive">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>No.</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Correo</th>
+                        <th>Vehículo</th>
+                        <th>Año</th>
+                        <th>Servicio</th>
+                        <th>Precio base</th>
+                        <th>Estado</th>
+                        <th>Acción</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for solicitud in solicitudes %}
+
+                    <tr>
+
+                        <!-- ID SOLICITUD -->
+                        <td>
+                            #{{ solicitud[0] }}
+                        </td>
+
+
+                        <!-- FECHA -->
+                        <td>
+                            {{ solicitud[1].strftime('%d/%m/%Y') }}
+                        </td>
+
+
+                        <!-- CLIENTE -->
+                        <td>
+                            <strong>
+                                {{ solicitud[2] }}
+                                {{ solicitud[3] }}
+                                {{ solicitud[4] or '' }}
+                            </strong>
+                        </td>
+
+
+                        <!-- CORREO -->
+                        <td>
+                            {{ solicitud[5] }}
+                        </td>
+
+
+                        <!-- VEHÍCULO -->
+                        <td>
+                            {{ solicitud[6] }}
+
+                            <br>
+
+                            {{ solicitud[7] }}
+                        </td>
+
+
+                        <!-- AÑO -->
+                        <td>
+                            {{ solicitud[8] }}
+                        </td>
+
+
+                        <!-- SERVICIO -->
+                        <td>
+                            {{ solicitud[9] }}
+                        </td>
+
+
+                        <!-- PRECIO BASE -->
+                        <td>
+                            ${{ "{:,.2f}".format(solicitud[10]) }}
+                        </td>
+
+
+                        <!-- ESTADO -->
+                        <td>
+                            {{ solicitud[11] }}
+                        </td>
+
+
+                        <!-- ACCIÓN -->
+                        <td>
+
+                            <a
+                                href="{{ url_for(
+                                    'cotizar',
+                                    id_solicitud=solicitud[0]
+                                ) }}"
+                                class="boton"
+                            >
+                                Cotizar
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- =================================================
+             NO EXISTEN SOLICITUDES
+             ================================================= -->
+
+        <div class="sin-solicitudes">
+
+            <h3>
+                No existen solicitudes
+            </h3>
+
+            <p>
+                Todavía no se han registrado solicitudes
+                de servicio.
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+
+        <!-- =================================================
+             BOTONES INFERIORES
+             ================================================= -->
+
+        <div class="area-boton">
+
+            <a
+                href="{{ url_for('inicio') }}"
+                class="boton">
+
+                Nueva solicitud
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+
+    <footer class="pie">
+
+        Taller Mecánico |
+        Sistema Web de Solicitudes de Servicio
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Solicitud recibida
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for(
+            'static',
+            filename='css/estilos.css'
+        ) }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="contenedor">
+
+
+    <!-- ================================================== -->
+    <!-- TÍTULO                                             -->
+    <!-- ================================================== -->
+
+    <h1>
+        Solicitud recibida
+    </h1>
+
+
+    <div class="mensaje-exito">
+
+        La solicitud fue registrada correctamente.
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- DATOS DEL PROSPECTO                                -->
+    <!-- ================================================== -->
+
+    <div class="seccion">
+
+        <h2>
+            Datos del prospecto
+        </h2>
+
+        <p>
+            <strong>Nombre:</strong>
+
+            {{ solicitud[2] }}
+            {{ solicitud[3] }}
+            {{ solicitud[4] or '' }}
+        </p>
+
+
+        <p>
+            <strong>Correo:</strong>
+
+            {{ solicitud[5] }}
+        </p>
+
+
+        <p>
+            <strong>Teléfono:</strong>
+
+            {{ solicitud[6] }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- DATOS DEL VEHÍCULO                                 -->
+    <!-- ================================================== -->
+
+    <div class="seccion">
+
+        <h2>
+            Datos del vehículo
+        </h2>
+
+
+        <p>
+            <strong>Marca:</strong>
+
+            {{ solicitud[7] }}
+        </p>
+
+
+        <p>
+            <strong>Modelo:</strong>
+
+            {{ solicitud[8] }}
+        </p>
+
+
+        <p>
+            <strong>Año:</strong>
+
+            {{ solicitud[9] }}
+        </p>
+
+
+        <p>
+            <strong>Kilometraje:</strong>
+
+            {{ solicitud[10] }} km
+        </p>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- DATOS DE LA SOLICITUD                              -->
+    <!-- ================================================== -->
+
+    <div class="seccion">
+
+        <h2>
+            Datos de la solicitud
+        </h2>
+
+
+        <p>
+            <strong>Número de solicitud:</strong>
+
+            {{ solicitud[0] }}
+        </p>
+
+
+        <p>
+            <strong>Fecha:</strong>
+
+            {{ solicitud[1] }}
+        </p>
+
+
+        <p>
+            <strong>Servicio solicitado:</strong>
+
+            {{ solicitud[12] }}
+        </p>
+
+
+        <p>
+            <strong>Descripción del servicio:</strong>
+
+            {{ solicitud[13] }}
+        </p>
+
+
+        <p>
+            <strong>Precio base:</strong>
+
+            ${{ "{:,.2f}".format(
+                solicitud[14]
+            ) }}
+        </p>
+
+
+        <p>
+            <strong>Problema reportado:</strong>
+
+            {{ solicitud[15] }}
+        </p>
+
+
+        <p>
+            <strong>Estado:</strong>
+
+            {{ solicitud[16] }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================== -->
+    <!-- BOTONES                                            -->
+    <!-- ================================================== -->
+
+    <div class="area-boton">
+
+        <a
+            href="{{ url_for('inicio') }}"
+            class="boton"
+        >
+            Nueva solicitud
+        </a>
+
+
+        <a
+            href="{{ url_for(
+                'listar_solicitudes'
+            ) }}"
+            class="boton"
+        >
+            Listar solicitudes
+        </a>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

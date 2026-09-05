@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+corregir_servicios_Aiven.py
+corregir_servicios_desde_python.py
+probar_postgres.py
+probar_postgres_temporal.py
+probar_python_postgres.py
+prueba correo pdf.py
+prueba_Aiven.py
+prueba_correo.py
+

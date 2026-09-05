@@ -1,0 +1,287 @@
+/* =========================================================
+   ESTILOS GENERALES
+   Práctica 04 - Taller Mecánico
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f4f7;
+    color: #333333;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.encabezado {
+    background-color: #263238;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+.encabezado h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.encabezado p {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.contenedor {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    text-align: center;
+    color: #263238;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+fieldset {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    padding: 20px;
+}
+
+legend {
+    font-weight: bold;
+    color: #263238;
+    padding: 0 10px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+
+/* =========================================================
+   CONTROLES
+   ========================================================= */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #455a64;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+button,
+.boton {
+    display: inline-block;
+    background-color: #263238;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:hover,
+.boton:hover {
+    background-color: #455a64;
+}
+
+
+/* =========================================================
+   CENTRAR BOTÓN
+   ========================================================= */
+
+.area-boton {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   SOLICITUD RECIBIDA
+   ========================================================= */
+
+.mensaje-exito {
+    background-color: #e8f5e9;
+    border-left: 5px solid #2e7d32;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+
+.mensaje-exito h2 {
+    color: #2e7d32;
+    margin: 0;
+}
+
+.datos {
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.datos h3 {
+    margin-top: 0;
+    color: #263238;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
+}
+
+.datos p {
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+
+.pie {
+    text-align: center;
+    padding: 20px;
+    color: #666666;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DISEÑO RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .contenedor {
+        width: 95%;
+        margin: 15px auto;
+        padding: 18px;
+    }
+
+    .encabezado h1 {
+        font-size: 25px;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+        font-size: 15px;
+    }
+}
+
+/* =========================================================
+   TABLA DE SOLICITUDES
+   ========================================================= */
+
+.contenedor-tabla {
+    max-width: 1400px;
+}
+
+.tabla-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabla-solicitudes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-solicitudes th {
+    background-color: #263238;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabla-solicitudes td {
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.tabla-solicitudes tbody tr:hover {
+    background-color: #f2f4f7;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    padding: 30px;
+    color: #666666;
+}
+
+/* =========================================================
+   COTIZACIÓN
+   ========================================================= */
+
+.total-cotizacion {
+    font-size: 22px;
+    text-align: right;
+    color: #263238;
+    margin-top: 20px;
+}
+
+.aviso-cotizacion {
+    background-color: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 6px;
+}
+
+.aviso-cotizacion h3 {
+    margin-top: 0;
+    color: #8d6e00;
+}
+
+.aviso-cotizacion li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
